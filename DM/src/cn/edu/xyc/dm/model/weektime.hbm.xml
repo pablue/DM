@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.xyc.dm.model.WeekTime" table="dm_weektime">
+		<id name="wid" type="java.lang.Long" length="5">
+			<generator class="increment"></generator>
+		</id>
+		<property name="weektime" length="30"></property>
+		
+		<set name="course" table="dm_course_week">
+			<key column="wid"></key>
+			<many-to-many class="cn.edu.xyc.dm.model.Course" column="cid"></many-to-many>
+		</set> 
+
+		<set name="jicis" inverse="true" cascade="all" >
+			<key>
+				<column name="week_id"></column>
+			</key>
+			<one-to-many class="cn.edu.xyc.dm.model.JieCi" />
+		</set>		
+	</class>
+</hibernate-mapping>

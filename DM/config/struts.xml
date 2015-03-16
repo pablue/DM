@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 配置为开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 把扩展名配置为action -->
+	<constant name="struts.action.extension" value="action" />
+	<!-- 设置Web应用的默认Locale为zh_CN -->
+	<constant name="struts.locale" value="zh_CN" />
+	<!-- 把主题配置为simple -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 设置Struts2.1应用的国际化资源文件，多个文件中间可用逗号分隔 -->
+	<constant name="struts.custom.i18n.resources" value="messageResource" />
+
+
+
+	<package name="dm" extends="struts-default" namespace="/">
+		<action name="login_*" class="loginAction" method="{1}">
+			<result name="input">{1}.jsp</result>
+			<result type="redirect" name="success">/main.jsp</result>
+			<result type="redirect" name="error">/{1}.jsp </result>
+			<result type="redirect" name="logout">login.jsp</result>
+		</action>
+
+		<action name="course_*" class="courseAction" method="{1}">
+			<result name="getid">/aa.jsp</result>
+		</action>
+
+	</package>
+
+</struts> 

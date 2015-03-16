@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.xyc.dm.model.Dianming" table="dm_dianming">
+		<id length="5" name="did" type="java.lang.Long">
+			<generator class="increment" />
+		</id>
+		<property generated="never" lazy="false" length="30" name="weektime"
+			type="string">
+		</property>
+		<property generated="never" lazy="false" length="30" name="ctime" />
+		<property generated="never" lazy="false" length="30" name="absence">
+		</property>
+		<property name="dianmingnum" type="integer"></property>
+		<property name="ischange" type="string"></property>
+		
+		<property generated="never" lazy="false" length="30" name="passstudent">
+		</property>
+		<many-to-one name="jieci" class="cn.edu.xyc.dm.model.JieCi" column="jieci"></many-to-one>
+		<many-to-one class="cn.edu.xyc.dm.model.Banji" name="banji" fetch="join"/>
+		<many-to-one class="cn.edu.xyc.dm.model.Course" name="course" fetch="join"/>
+		<many-to-one class="cn.edu.xyc.dm.model.Teacher" name="tercher" fetch="join"/>
+	</class>
+</hibernate-mapping>
