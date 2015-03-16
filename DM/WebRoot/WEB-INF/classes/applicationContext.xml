@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<!-- 与hibernate 相整合 -->
+	<import resource="applicationContext-db.xml" />
+
+	<!--用注解的方式来进行注入 -->
+ 	<context:annotation-config />
+	<!-- 自动扫描所有的包，并且自动的生成相对应的Bean -->
+ 	<context:component-scan base-package="cn.edu.xyc" /> 
+
+</beans>

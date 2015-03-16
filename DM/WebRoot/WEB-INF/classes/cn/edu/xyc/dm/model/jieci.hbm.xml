@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.xyc.dm.model.JieCi" table="dm_jieci">
+		<id name="jid" type="java.lang.Long" length="5">
+			<generator class="increment"></generator>
+		</id>
+		<property name="jname" length="30"></property>
+		
+		<!-- 一节课有多个课程 -->
+		<set name="course" table="dm_course_jieci">
+			<key column="jid"></key>
+			<many-to-many class="cn.edu.xyc.dm.model.Course" column="cid"></many-to-many>
+		</set> 
+		
+		<many-to-one name="weektime" class="cn.edu.xyc.dm.model.WeekTime" column="week_id"></many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.xyc.dm.model.ChangeClass" table="dm_changeclass">
+		<id name="ccid" type="java.lang.Long" length="5">
+			<generator class="increment"></generator>
+		</id>
+		<many-to-one name="banji" column="bid" class="cn.edu.xyc.dm.model.Banji" fetch="join"></many-to-one>
+		<many-to-one name="jieCi" column="jieci" class="cn.edu.xyc.dm.model.JieCi" fetch="join"></many-to-one>
+		<property name="changtime" type="date"></property>
+		<many-to-one name="teacher" column="tid" class="cn.edu.xyc.dm.model.Teacher" fetch="join"></many-to-one>
+		<many-to-one name="weekTime" column="wid" class="cn.edu.xyc.dm.model.WeekTime" fetch="join"></many-to-one>
+	</class>
+</hibernate-mapping>
