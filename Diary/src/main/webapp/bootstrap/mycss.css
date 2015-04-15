@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+body {
+	margin-top: 60px;
+}
+
+.datalist {
+	background-color: #fdfdfd;
+	border: 1px solid #e5e5e5;
+	margin-top: 15px;
+	padding: 10px;
+}
+
+.add_title {
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 15px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+.add_diary_title {
+	margin-top: 20px;
+	width: 50%;
+	margin-bottom: 20px;
+	text-align: center;
+}
