@@ -9,7 +9,7 @@
 		</div>
 		<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="#"><span class="glyphicon glyphicon-home"></span> 主页</a></li>
+				<li><a href="userAction!mainUI.action"><span class="glyphicon glyphicon-home"></span> 主页</a></li>
 				<li><a href="userAction!addtypeui.action"><span class="glyphicon glyphicon-pencil"></span> 写日记</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-book"></span> 日记分类管理</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span> 个人中心</a></li>

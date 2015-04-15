@@ -32,7 +32,7 @@
 	<div class="container">
 	<div class="row">
 		<div class="col-xm-12 col-sm-12 col-md-9 col-lg-9" >
-		 <s:action  name="userAction!addtypeui" executeResult="true" namespace="/"></s:action>
+		 <s:action  name="diary!listall" executeResult="true"></s:action>
 		</div>
 		<div class="col-md-3 col-lg-3 hidden-xs hidden-sm"  style="background-color: green;">asdf</div>
 	</div>

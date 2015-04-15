@@ -26,11 +26,34 @@ public class Tdiary implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8595617110610938497L;
+	/**
+	 * 日记的id
+	 */
 	private String diaryId;
+
+	/**
+	 * 日记所属的类别
+	 */
 	private Ttype ttype;
+
+	/**
+	 * 日记发布的作者
+	 */
 	private Tuser tuser;
+
+	/**
+	 * 日记发布的标题
+	 */
 	private String title;
+
+	/**
+	 * 日记发布的内容
+	 */
 	private String content;
+
+	/**
+	 * 发布的时间
+	 */
 	private Date releaseDate;
 
 	// Constructors

@@ -22,5 +22,5 @@ public interface DiaryServiceI {
 	 * @param uid
 	 * @return
 	 */
-	public List<Tdiary> list(String uid);
+	public List<Diary> list(String uid,int page,int rows);
 }

@@ -13,7 +13,9 @@ import diary.pagemodel.Type;
 import diary.pagemodel.User;
 import diary.utils.ConstantUtils;
 
-@Action(value = "/type", results = { @Result(name = "success", location = "/index.jsp") ,@Result(name="error" ,location="/error.jsp")
+@Action(value = "/type", results = { 
+		@Result(name = "success", location = "/index.jsp") ,
+		@Result(name="error" ,location="/error.jsp")
 
 })
 public class TypeAction extends BaseAction implements ModelDriven<Type> {

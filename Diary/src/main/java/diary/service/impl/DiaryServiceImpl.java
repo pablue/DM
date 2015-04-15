@@ -1,6 +1,9 @@
 package diary.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +46,22 @@ public class DiaryServiceImpl implements DiaryServiceI {
 		
 	}
 
-	public List<Tdiary> list(String uid) {
-		return null;
+	public List<Diary> list(String uid,int page ,int rows) {
+		Map<String,Object> m  = new HashMap<String,Object>();
+		List<Diary> diarylist = new ArrayList<Diary>();
+		
+		Diary diary = new Diary();
+		m.put("uid", uid);
+		List<Tdiary> tdiarylist = diarydao.find("from Tdiary d where d.tuser.userId=:uid", m, page, rows);
+		for (Tdiary tdiary : tdiarylist) {
+			
+			BeanUtils.copyProperties(tdiary, diary,new String[]{"ttype","tuser"});
+			diary.setUid(tdiary.getTuser().getUserId());
+			diary.setTid(tdiary.getTtype().getDiaryTypeId());
+			diarylist.add(diary);
+		}
+		
+		return diarylist;
 	}
 
 	public void delete(Tdiary d) {
