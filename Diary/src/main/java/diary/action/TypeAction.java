@@ -1,11 +1,14 @@
 package diary.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 import diary.action.base.BaseAction;
@@ -14,8 +17,9 @@ import diary.pagemodel.User;
 import diary.utils.ConstantUtils;
 
 @Action(value = "/type", results = { 
-		@Result(name = "success", location = "/index.jsp") ,
-		@Result(name="error" ,location="/error.jsp")
+		@Result(name = "success", location = "/index.jsp"), 
+		@Result(name = "error", location = "/error.jsp"),
+		@Result(name="listtype",location="/WEB-INF/jsp/listtype.jsp")
 
 })
 public class TypeAction extends BaseAction implements ModelDriven<Type> {
@@ -29,8 +33,8 @@ public class TypeAction extends BaseAction implements ModelDriven<Type> {
 	}
 
 	public String add() {
-		
-		//获取应用 程序中的Session
+
+		// 获取应用 程序中的Session
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		User obj = (User) session.getAttribute(ConstantUtils.LOGIN_SESSION);
 
@@ -42,6 +46,23 @@ public class TypeAction extends BaseAction implements ModelDriven<Type> {
 		this.typeServiceI.addType(type);
 
 		return SUCCESS;
+	}
+
+	public String list() {
+		// 获取应用 程序中的Session
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		User obj = (User) session.getAttribute(ConstantUtils.LOGIN_SESSION);
+
+		if (obj == null) {
+			return ERROR;
+
+		}
+		
+		List<Type> list = this.typeServiceI.list(obj.getUserId());
+		
+		ActionContext.getContext().put("typelist", list);
+
+		return "listtype";
 	}
 
 }

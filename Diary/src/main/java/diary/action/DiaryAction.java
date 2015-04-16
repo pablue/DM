@@ -19,7 +19,8 @@ import diary.utils.ConstantUtils;
 
 @Action(value = "diary", results = { 
 		@Result(name = "error", location = "/error.jsp", type = "redirect"), 
-		@Result(name = "listall", location = "/WEB-INF/jsp/listdiary.jsp")
+		@Result(name = "listall", location = "/WEB-INF/jsp/listdiary.jsp"),
+		@Result(name="mainUI",location="/userAction!mainUI.action", type = "redirect")
 
 })
 public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
@@ -59,12 +60,9 @@ public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
 
 		model.setUid(user.getUserId());
 
-		LOGGER.info("content:" + model.getContent());
-		LOGGER.info("title:" + model.getTitle());
-		LOGGER.info("uid:" + model.getUid());
 		this.diaryService.addDiary(model);
 
-		return null;
+		return "mainUI";
 
 	}
 

@@ -45,19 +45,17 @@
 					<input type="text" class="form-control" name="title" placeholder="在这里输入标题">
 				</div>
 
-				<div id="editor" type="text/plain" style="height:400px" name="content"></div>
+				<div id="editor" type="text/plain" style="height:400px;width: 800px;" name="content"></div>
 	
-	在这里选择类别:<s:select list="#types" headerKey="0" headerValue="select typediary" listKey="id" listValue="typeName" name="tid"></s:select>
+	在这里选择类别:<s:select list="#types" headerKey="0" headerValue="-----select-----" listKey="id" listValue="typeName" name="tid" cssClass="form-control"></s:select>
 
 				<br>
 
-				<button type="button" class="btn btn-primary" onclick="getPlainTxt()">保存日记</button>
+				<button  class="btn btn-primary" >保存日记</button>
 			</s:form>
 		</div>
 	</div>
 
 	<script type="text/javascript">
 		var ue = UE.getEditor('editor');
-	
-		
 	</script>

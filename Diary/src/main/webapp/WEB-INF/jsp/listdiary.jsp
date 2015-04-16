@@ -11,9 +11,8 @@
   
   <body>
   
-  <s:iterator value="#diarylist" var="diary">
-  	『<s:property value="#diary.releaseDate"/>』<s:a><s:property value="#diary.title"/></s:a>
+  <s:iterator value="#diarylist">
+  	『<s:property value="releaseDate"/>』<s:a><s:property value="title"/></s:a><br>
   </s:iterator>
-  <s:debug></s:debug>
   </body>
 </html>
