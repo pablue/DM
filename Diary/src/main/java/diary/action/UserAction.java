@@ -18,26 +18,25 @@ import diary.pagemodel.Json;
 import diary.pagemodel.Type;
 import diary.pagemodel.User;
 import diary.utils.ConstantUtils;
+
 /**
- * <code>type:</code>
- * <code>redirect</code>
- * <code>redirectAction</code>
- * <code>dispatcher</code>
+ * <code>type:</code> <code>redirect</code> <code>redirectAction</code> <code>dispatcher</code>
+ * 
  * @author Administrator
- *
+ * 
  */
-@Action(value = "userAction", results = {
-			@Result(name = "success", location = "/userAction!mainUI.action", type = "redirect"),
-			@Result(name = "input", location = "/login.jsp" ,type = "dispatcher"), 
-			@Result(name = "main", location = "/main.jsp" ,type = "dispatcher"), 
-			@Result(name = "addtype", location = "/jsps/adddiary.jsp", type = "dispatcher"),
-			@Result(name = "test", location = "/index.jsp", type = "redirect")
+@Action(value = "userAction", results = { 
+		@Result(name = "success", location = "/userAction!mainUI.action", type = "redirect"), 
+		@Result(name = "input", location = "/login.jsp", type = "dispatcher"), 
+		@Result(name = "main", location = "/main.jsp", type = "dispatcher"), 
+		@Result(name = "addtype", location = "/jsps/adddiary.jsp", type = "dispatcher"), 
+		@Result(name = "test", location = "/index.jsp", type = "redirect"),
+		@Result(name = "error",location ="/error.jsp",type = "dispatcher")
 
 })
 public class UserAction extends BaseAction implements ModelDriven<User> {
 
 	private static final long serialVersionUID = -3868541754207941420L;
-	
 
 	private User user = new User();
 
@@ -67,8 +66,6 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 		super.writeJson(j);
 	}
 
-	
-	
 	// 当登陆时进行的方法
 	public String login() {
 		Json j = new Json();
@@ -101,15 +98,16 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 	}
 
 	public String mainUI() {
-		
 
 		return "main";
 	}
-	
-	
-	public String addtypeui(){
+
+	public String addtypeui() {
 		HttpSession session = getHttpRequest().getSession();
 		User uesr2 = (User) session.getAttribute(ConstantUtils.LOGIN_SESSION);
+		if (uesr2 == null) {
+			return ERROR;
+		}
 		List<Type> list = this.typeServiceI.list(uesr2.getUserId());
 		ActionContext.getContext().put("types", list);
 		return "addtype";
@@ -120,5 +118,5 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		return request;
 	}
-	
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import diary.model.Tdiary;
 import diary.pagemodel.Diary;
+import diary.pagemodel.Page;
 
 public interface DiaryServiceI {
 	
@@ -22,5 +23,12 @@ public interface DiaryServiceI {
 	 * @param uid
 	 * @return
 	 */
-	public List<Diary> list(String uid,int page,int rows);
+	public Page<Diary> list(String uid,int page,int rows);
+	
+	
+	/**
+	 * 查看单个日记
+	 */
+	
+	public Diary showdiary(String did);
 }

@@ -17,5 +17,10 @@ public class ConstantUtils {
 	 * 设置成默认的字符编码
 	 */
 	public static final String DefaultEncoding = "UTF-8";
+	
+	/**
+	 * 默认pagesize的大小
+	 */
 
+	public static final int DefaultPageSize = 10;
 }

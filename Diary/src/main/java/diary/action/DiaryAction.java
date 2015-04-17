@@ -1,6 +1,5 @@
 package diary.action;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,13 +13,15 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import diary.action.base.BaseAction;
 import diary.pagemodel.Diary;
+import diary.pagemodel.Page;
 import diary.pagemodel.User;
 import diary.utils.ConstantUtils;
 
 @Action(value = "diary", results = { 
 		@Result(name = "error", location = "/error.jsp", type = "redirect"), 
 		@Result(name = "listall", location = "/WEB-INF/jsp/listdiary.jsp"),
-		@Result(name="mainUI",location="/userAction!mainUI.action", type = "redirect")
+		@Result(name = "mainUI", location = "/userAction!mainUI.action", type = "redirect"),
+		@Result(name = "showdiary",location = "/WEB-INF/jsp/showdiary.jsp")
 
 })
 public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
@@ -48,8 +49,7 @@ public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
 	// 添加一个日记事件
 	public String add() {
 		// 从Session中得到用户的信息
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		User user = (User) session.getAttribute(ConstantUtils.LOGIN_SESSION);
+		User user = islogin();
 
 		if (user == null) {
 			LOGGER.error("没有获取到用户的信息，或者是Session失效");
@@ -68,25 +68,49 @@ public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
 
 	public String listall() {
 
+		
+		User user = islogin();
+		if (user == null) {
+			LOGGER.error("没有获取到用户的信息，或者是Session失效");
+			return ERROR;
+		} else if (page <= 0) {
+			page = 1;
+		}
+		
+		Page<Diary> pagemodel = this.diaryService.list(user.getUserId(),page, ConstantUtils.DefaultPageSize);
+		
+		ActionContext.getContext().put("diarylist", pagemodel);
+		LOGGER.info("取出成功");
+
+		return "listall";
+
+	}
+
+	/**
+	 * 判断是否登陆
+	 */
+	public User islogin() {
+		// 从Session中得到用户的信息
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		User user = (User) session.getAttribute(ConstantUtils.LOGIN_SESSION);
-		
-		if (user != null) {
 
-			if (page <= 0) {
-				page = 1;
-			}
+		if (user == null) {
 
-				List<Diary> list = this.diaryService.list(user.getUserId(), page, 10);
-				ActionContext.getContext().put("diarylist", list);
-				LOGGER.info("取出成功");
-
-				return "listall";
-
+			return null;
 		}
-
-		return ERROR;
-
+		return user;
+	}
+	
+	public String show(){
+		try {
+			Diary showdiary = this.diaryService.showdiary(diary.getDiaryId());
+			ActionContext.getContext().put("diary", showdiary);
+		} catch (Exception e) {
+			LOGGER.error("查看日记出错了！！！");
+			e.printStackTrace();
+		}
+		
+		return "showdiary";
 	}
 
 }
