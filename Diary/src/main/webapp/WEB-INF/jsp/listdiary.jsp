@@ -7,11 +7,6 @@
 <head>
 
 <title>列出我的日记</title>
-<style>
-body {
-	margin-top: 80px;
-}
-</style>
 
 </head>
 
@@ -25,9 +20,15 @@ body {
 		<ul class="list-group">
 			<s:iterator value="#diarylist">
 				<s:iterator value="list" var="diary">
-					<li class="list-group-item">『 <s:property value="#diary.releaseDate" /> 』<s:a href="diary!show.action?DiaryId=%{#diary.DiaryId}">
+<!-- 				<s:if test="#diary.filepath==null||#diary.filepath==''"> -->
+<!-- 				diary!show.action?DiaryId=%{#diary.diaryId} -->
+<!-- 				</s:if> -->
+					<li class="list-group-item">『 <s:property value="#diary.releaseDate" /> 』<a href="<s:if test='#diary.filepath==null'>
+				diary!show.action?DiaryId=${diary.diaryId}
+				</s:if>${diary.filepath}">
 							<s:property value="#diary.title" />
-						</s:a></li>
+						</a>
+						<button type="button"  class="btn btn-danger btn-sm pull-right">删除</button> <button type="button" class="btn btn-info btn-sm pull-right">修改</button>
 				</s:iterator>
 
 			</s:iterator>
@@ -39,7 +40,9 @@ body {
 				</a></li>
 
 				<s:iterator begin="1" end="#diarylist.totalpage" var="c">
-					<li><a href="diary!listall.action?page=${c} ">${c}</a></li>
+					<li><a href="diary!listall.action?page=${c} ">${c}</a>
+						
+					</li>
 				</s:iterator>
 
 				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>

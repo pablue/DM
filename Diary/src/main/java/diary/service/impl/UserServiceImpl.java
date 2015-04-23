@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserServiceI {
 	}
 
 	public void test() {
-		logger.info("sssssssss");
 		List<Tuser> find = userdao.find("from TUser",2,10);
 		for (Tuser tUser : find) {
 			System.out.println(tUser.getUserName());
@@ -62,6 +61,17 @@ public class UserServiceImpl implements UserServiceI {
 			return user;
 		}
 		return null;
+	}
+	
+	/**
+	 * 向右侧显示内容
+	 */
+	@Override
+	public User show(String userid) {
+		User user = new User();
+		Tuser tuser = this.userdao.getById(Tuser.class, userid);
+		BeanUtils.copyProperties(tuser, user);
+		return user;
 	}
 
 }

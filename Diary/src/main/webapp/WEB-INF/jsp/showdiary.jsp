@@ -4,17 +4,26 @@
 <html>
 <head>
 
-<title>show tables</title>
-    <jsp:include page="/jsps/style.jsp"></jsp:include>
+<title><s:property value="#diary.title" /></title>
+<jsp:include page="/jsps/style.jsp"></jsp:include>
 
 </head>
 
 <body>
-  <jsp:include page="/jsps/nav.jsp"></jsp:include>
-	标题
-	<s:property value="#diary.title" />
-	<br> 内容:
-	<s:property value="#diary.content" escape="false"/>
+<div class="container">
+	<jsp:include page="/jsps/nav.jsp"></jsp:include>
+
+	<div class="page-header">
+		<h1 ><s:property value="#diary.title" /></h1>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<s:property value="#diary.content" escape="false" />
+		</div>
+	</div>
+
+</div>
 
 </body>
 </html>

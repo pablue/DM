@@ -28,7 +28,7 @@
 					</div>
 					<div class="form-group">
 						<label>在这里选择类别:</label>
-						<s:select list="#types" headerKey="0" headerValue="-----select-----" listKey="id" listValue="typeName" name="tid" cssClass="form-control" cssStyle="width:50%"></s:select>
+						<s:select list="#types" headerKey="0" headerValue="-----select-----" listKey="id" listValue="typeName" name="tid" cssClass="form-control"></s:select>
 					</div>
 
 					<div id="editor" type="text/plain" style="height:400px;width: 800px;" name="content"></div>
@@ -41,6 +41,4 @@
 
 	<script type="text/javascript">
 		var ue = UE.getEditor('editor');
-	
-		
 	</script>

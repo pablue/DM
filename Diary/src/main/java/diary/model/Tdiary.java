@@ -55,9 +55,25 @@ public class Tdiary implements java.io.Serializable {
 	 * 发布的时间
 	 */
 	private Date releaseDate;
+	
+	/**
+	 * 文件存放的位置
+	 */
+	private String filepath;
+	
+	
+	/**
+	 * 关键字
+	 */
+	private String keyword;
+	
+	/**
+	 * 页面的描述信息
+	 */
+	private String description;
+	
 
 	// Constructors
-
 	/** default constructor */
 	public Tdiary() {
 	}
@@ -134,6 +150,34 @@ public class Tdiary implements java.io.Serializable {
 
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+	
+	@Column(name = "keyword", length = 100)
+	public String getKeywords() {
+		return keyword;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keyword = keywords;
+	}
+
+	
+	@Column(name = "description", length = 100)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Column(name = "filepath", length = 100)
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
 	}
 
 }

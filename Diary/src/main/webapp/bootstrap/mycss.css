@@ -34,3 +34,10 @@ body {
 	
 	margin-right: 20px;
 }
+
+.datalist ul li{
+	margin-top:10px;
+}
+.datalist ul li button{
+	margin-right: 10px;
+	margin-top:-5px;

@@ -4,12 +4,14 @@ import java.util.Date;
 
 public class Diary {
 
-	private String diaryId;  //当前日记的ID
+	private String diaryId; // 当前日记的ID
 	private String tid;
 	private String uid;
 	private String title;
 	private String content;
 	private Date releaseDate;
+	private String filepath;
+	private String keyword;
 
 	public String getDiaryId() {
 		return diaryId;
@@ -58,5 +60,31 @@ public class Diary {
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
+
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	private String description;
 
 }

@@ -1,6 +1,7 @@
 package diary.action;
 
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -66,6 +67,10 @@ public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
 
 	}
 
+	/**
+	 * 从数据库中取出部分的日记并分页显示
+	 * @return
+	 */
 	public String listall() {
 
 		
@@ -101,6 +106,10 @@ public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
 		return user;
 	}
 	
+	/**
+	 * 查看单个日记
+	 * @return
+	 */
 	public String show(){
 		try {
 			Diary showdiary = this.diaryService.showdiary(diary.getDiaryId());
@@ -109,7 +118,6 @@ public class DiaryAction extends BaseAction implements ModelDriven<Diary> {
 			LOGGER.error("查看日记出错了！！！");
 			e.printStackTrace();
 		}
-		
 		return "showdiary";
 	}
 

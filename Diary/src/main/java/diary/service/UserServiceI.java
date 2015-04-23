@@ -12,4 +12,6 @@ public interface UserServiceI {
 
 	public User login(User user);
 
+	public User show(String userid);
+
 }

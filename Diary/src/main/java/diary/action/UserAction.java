@@ -31,7 +31,8 @@ import diary.utils.ConstantUtils;
 		@Result(name = "main", location = "/main.jsp", type = "dispatcher"), 
 		@Result(name = "addtype", location = "/jsps/adddiary.jsp", type = "dispatcher"), 
 		@Result(name = "test", location = "/index.jsp", type = "redirect"),
-		@Result(name = "error",location ="/error.jsp",type = "dispatcher")
+		@Result(name = "error",location ="/error.jsp",type = "dispatcher"),
+		@Result(name = "show_user",location ="/WEB-INF/jsp/rightpage.jsp",type = "dispatcher")
 
 })
 public class UserAction extends BaseAction implements ModelDriven<User> {
@@ -111,6 +112,17 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 		List<Type> list = this.typeServiceI.list(uesr2.getUserId());
 		ActionContext.getContext().put("types", list);
 		return "addtype";
+	}
+	
+	
+	public String ShowUserInfo(){
+		User user = (User) getHttpRequest().getSession().getAttribute(ConstantUtils.LOGIN_SESSION);
+		if(user==null){
+			return ERROR;
+		}
+		User show = this.userService.show(user.getUserId());
+		ActionContext.getContext().put("user", show);
+		return "show_user";
 	}
 
 	// 得到HTTP中的request
